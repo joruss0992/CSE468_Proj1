@@ -1,0 +1,28 @@
+# Jacob Russ
+# Here is the given yaml file for the gateway VM.
+# Both the enpo0s3 and enp0s8 internal netowkrs are set up
+# With their appropriate addresses linking it back to the default DNS
+# Servers 8.8.8.8 and 8.8.4.4
+# Finally enp0s9 is set up to properly enable the network to be connected to the NatNetwork
+# providing internet to the gateway and it's connections.
+
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    enp0s3:
+      dhcp4: no
+        addresses:
+          - 192.168.0.100/24
+        nameservers:
+          addresses: [8.8.8.8, 8.8.4.4]
+      enp0s9:
+        dhcp4: yes
+        nameservers:
+          addresses: [8.8.8.8, 8.8.4.4]
+       enp0s8:
+        dhcp4: no
+        addresses:
+          - 10.0.0.100/8
+        nameservers:
+          addresses: [8.8.8.8, 8.8.4.4]
